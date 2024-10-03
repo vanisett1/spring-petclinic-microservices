@@ -25,6 +25,9 @@ serviceAccount:
   # If not set and create is true, a name is generated using the fullname template
   name: ""
 
+rbac:
+  create: true
+
 podAnnotations: {}
 podLabels: {}
 
@@ -41,7 +44,7 @@ securityContext: {}
 
 service:
   type: ClusterIP
-  port: 9091
+  port: 9090
   targetPort: 9090
 
 
@@ -96,10 +99,10 @@ autoscaling:
 volumes:
 - name: prometheus-config-volume
   configMap:
-          name: prometheus-config
-          items:
-          - key: prometheus.yml
-            path: prometheus.yml
+    name: prometheus-config
+    items:
+    - key: prometheus.yml
+      path: prometheus.yml
 
 # Additional volumeMounts on the output Deployment definition.
 volumeMounts:

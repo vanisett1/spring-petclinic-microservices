@@ -101,6 +101,9 @@ volumes:
 - name: grafana-dashboards-config
   configMap:
     name: grafana-dashboards-config
+- name: grafana-datasources
+  configMap:
+    name: grafana-datasources
 
 # Additional volumeMounts on the output Deployment definition.
 volumeMounts:
@@ -111,6 +114,8 @@ volumeMounts:
   mountPath: /etc/grafana/provisioning
 - name: grafana-dashboards-config
   mountPath: /var/lib/grafana/dashboards
+- name: grafana-datasources
+  mountPath: /etc/grafana/provisioning/datasources
 
 nodeSelector: {}
 

@@ -60,3 +60,17 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+{{/*
+Deployment annotations
+*/}}
+{{- define "api-gateway.annotations" -}}
+{{- if .Values.prometheus.enabled }}
+prometheus.io/scrape: "{{ .Values.prometheus.scrape | default "true" }}"
+prometheus.io/port: "{{ .Values.prometheus.port }}"
+prometheus.io/path: "{{ .Values.prometheus.path }}"
+{{- end }}
+{{- with .Values.annotations }}
+{{- toYaml . | nindent 0 }}
+{{- end }}
+{{- end }}
