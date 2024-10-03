@@ -1,0 +1,31 @@
+# ConfigMap for grafana.ini
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-ini-config
+data:
+  grafana.ini: |-
+    {{- .Files.Get "config/grafana.ini" | nindent 4 }}
+
+# ConfigMap for Grafana provisioning files (dashboards and datasources)
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-provisioning-config
+data:
+  dashboards.yml: |-
+    {{- .Files.Get "config/provisioning/dashboards/all.yml" | nindent 4 }}
+  datasources.yml: |-
+    {{- .Files.Get "config/provisioning/datasources/all.yml" | nindent 4 }}
+
+# ConfigMap for Grafana dashboard JSON
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-dashboards-config
+data:
+  grafana-petclinic-dashboard.json: |-
+    {{- .Files.Get "config/dashboard/grafana-petclinic-dashboard.json" | nindent 4 }}
