@@ -17,6 +17,10 @@ spec:
       annotations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      {{- with include "vets-service.annotations" . }}
+      annotations:
+        {{- . | nindent 8 }}
+      {{- end }}
       labels:
         {{- include "vets-service.labels" . | nindent 8 }}
         {{- with .Values.podLabels }}

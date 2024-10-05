@@ -17,6 +17,10 @@ spec:
       annotations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      {{- with include "visits-service.annotations" . }}
+      annotations:
+        {{- . | nindent 8 }}
+      {{- end }}
       labels:
         {{- include "visits-service.labels" . | nindent 8 }}
         {{- with .Values.podLabels }}

@@ -95,6 +95,14 @@ autoscaling:
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
 
+prometheus:
+  enabled: true
+  scrape: "true"
+  port: "8082"
+  path: "/actuator/prometheus"
+
+annotations: {}
+
 # Additional volumes on the output Deployment definition.
 volumes: []
 # - name: foo
